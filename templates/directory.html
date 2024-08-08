@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Employee Directory</h2>
+<ul>
+    {% for employee in employees %}
+    <li>{{ employee.name }} - {{ employee.position }} - {{ employee.email }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
