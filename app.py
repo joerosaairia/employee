@@ -51,7 +51,7 @@ def calendar():
 @app.route('/api/employee_assistant', methods=['POST'])
 def employee_assistant():
     # External API URL
-    external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/employee_assistant"
+    external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/get_bitcoin_price"
     
     # Headers (including authorization token if required)
     headers = {
