@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function sendToApi(userInput) {
-        fetch('https://demo.airia.com/platform/api/PipelineExecution/get_bitcoin_price', {
+        fetch('https://demo.airia.com/platform/api/PipelineExecution/employee_assistant', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
