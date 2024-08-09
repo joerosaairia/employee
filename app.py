@@ -48,7 +48,7 @@ def calendar():
     return render_template('calendar.html', events=events)
 
 # New API endpoint to handle requests to an external API
-@app.route('/api/employee_assistant', methods=['GET'])
+@app.route('/api/employee_assistant', methods=['POST'])
 def employee_assistant():
     # External API URL
     external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/employee_assistant"
