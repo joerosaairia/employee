@@ -34,11 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function sendToApi(userInput) {
-        fetch('https://demo.airia.com/platform/api/PipelineExecution/employee_assistant', {
+        fetch('/api/employee_assistant', {  // Update to call the Flask backend API
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'X-API-Key': 'd465b2d3-4b4c-4167-83ee-e7c144664b35'  // replace with the actual API key
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 userInput: userInput,
@@ -46,9 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         })
         .then(response => response.json())
-        .then(data => { console.log(userInput)})
         .then(data => {
             console.log(data);
+            if (data.response) {
+                addMessage(data.response, 'bot-message');
+            } else {
+                addMessage('Sorry, there was an error processing your request.', 'bot-message');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            addMessage('Sorry, there was an error connecting to the server.', 'bot-message');
         });
     }
 });

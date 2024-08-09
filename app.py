@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -45,6 +46,31 @@ def documents_page():
 @app.route('/calendar')
 def calendar():
     return render_template('calendar.html', events=events)
+
+# New API endpoint to handle requests to an external API
+@app.route('/api/employee_assistant', methods=['GET'])
+def employee_assistant():
+    # External API URL
+    external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/employee_assistant"
+    
+    # Headers (including authorization token if required)
+    headers = {
+        "X-API-Key": "d465b2d3-4b4c-4167-83ee-e7c144664b35",
+        "Content-Type": "application/json"
+    }
+
+    try:
+        # Make a request to the external API
+        response = requests.get(external_api_url, headers=headers)
+
+        # Check if the response was successful
+        if response.status_code == 200:
+            # Return the API response to the frontend
+            return jsonify(response.json())
+        else:
+            return jsonify({"error": "Failed to fetch data from external API", "status_code": response.status_code}), response.status_code
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
