@@ -47,13 +47,13 @@ def documents_page():
 def calendar():
     return render_template('calendar.html', events=events)
 
-# New API endpoint to handle requests to an external API
-@app.route('/api/employee_assistant', methods=['GET', 'POST'])
+# API endpoint to handle requests to an external API
+@app.route('/api/employee_assistant', methods=['POST'])
 def employee_assistant():
     # External API URL
     external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/get_bitcoin_price"
     
-    # Headers (including authorization token if required)
+    # Headers (including API key)
     headers = {
         "X-API-Key": "d465b2d3-4b4c-4167-83ee-e7c144664b35",
         "Content-Type": "application/json"
@@ -61,7 +61,7 @@ def employee_assistant():
 
     try:
         # Make a request to the external API
-        response = requests.post(external_api_url, headers=headers)
+        response = requests.post(external_api_url, headers=headers, json=request.json)
 
         # Check if the response was successful
         if response.status_code == 200:
