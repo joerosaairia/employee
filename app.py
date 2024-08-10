@@ -10,6 +10,7 @@ def home():
     return render_template('home.html')
 
 @app.route('/api/employee_assistant', methods=['POST'])
+@app.route('/api/employee_assistant', methods=['POST'])
 def employee_assistant():
     print("Employee Assistant API Called")  # Debugging statement
     external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/get_bitcoin_price"
@@ -27,6 +28,7 @@ def employee_assistant():
             return jsonify({"error": error_message, "status_code": response.status_code}), response.status_code
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
