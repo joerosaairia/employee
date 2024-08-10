@@ -53,10 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
+            console.log("Data received:", data); // Log the data for debugging
             if (data.result) {
                 addMessage(`Bot: ${data.result}`, 'bot-message');  // Display the result
-            } else if (data.response) {
-                addMessage(`Bot: ${data.response}`, 'bot-message');  // Display the response message
+            } else if (data.report) {
+                const firstReport = Object.values(data.report)[0];
+                if (firstReport && firstReport.result) {
+                    addMessage(`Bot: ${firstReport.result}`, 'bot-message');  // Display the nested result
+                } else {
+                    addMessage('Sorry, there was an error processing your request.', 'bot-message');
+                }
             } else {
                 addMessage('Sorry, there was an error processing your request.', 'bot-message');
             }
