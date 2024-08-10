@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         })
         .then(response => {
-            // Check if the response is OK (status code 200-299)
             if (!response.ok) {
                 return response.json().then(errorData => {
                     throw new Error(errorData.error || 'Unknown error occurred');
@@ -54,15 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            if (data.response) {
-                addMessage(data.response, 'bot-message');  // Display the response message
+            if (data.result) {
+                addMessage(`Bot: ${data.result}`, 'bot-message');  // Display the result
+            } else if (data.response) {
+                addMessage(`Bot: ${data.response}`, 'bot-message');  // Display the response message
             } else {
                 addMessage('Sorry, there was an error processing your request.', 'bot-message');
             }
         })
         .catch(error => {
-            // Display the error message as a bot message
-            addMessage(`Bot: ${error.message}`, 'bot-message');
+            addMessage(`Bot: ${error.message}`, 'bot-message');  // Display the error message
         });
     }
 });
