@@ -48,7 +48,7 @@ def calendar():
     return render_template('calendar.html', events=events)
 
 # New API endpoint to handle requests to an external API
-@app.route('/api/employee_assistant', methods=['GET'])
+@app.route('/api/employee_assistant', methods=['GET', 'POST'])
 def employee_assistant():
     # External API URL
     external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/get_bitcoin_price"
@@ -68,7 +68,9 @@ def employee_assistant():
             # Return the API response to the frontend
             return jsonify(response.json())
         else:
-            return jsonify({"error": "Failed to fetch data from external API", "status_code": response.status_code}), response.status_code
+            # Attempt to get the error message from the API response
+            error_message = response.json().get('message', 'Unknown error occurred')
+            return jsonify({"error": error_message, "status_code": response.status_code}), response.status_code
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
 
