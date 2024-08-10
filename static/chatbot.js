@@ -44,20 +44,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 debug: true
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            // Check if the response is OK (status code 200-299)
+            if (!response.ok) {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.error || 'Unknown error occurred');
+                });
+            }
+            return response.json();
+        })
         .then(data => {
-            if (data.error) {
-                addMessage(data.error, 'bot-message');  // Display the error message
-            } else if (data.response) {
+            if (data.response) {
                 addMessage(data.response, 'bot-message');  // Display the response message
             } else {
                 addMessage('Sorry, there was an error processing your request.', 'bot-message');
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            addMessage('Sorry, there was an error connecting to the server.', 'bot-message');
+            // Display the error message as a bot message
+            addMessage(`Bot: ${error.message}`, 'bot-message');
         });
     }
-    
 });
