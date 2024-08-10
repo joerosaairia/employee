@@ -51,7 +51,7 @@ def calendar():
 # API route to handle chatbot requests
 @app.route('/api/employee_assistant', methods=['POST'])
 def employee_assistant():
-    external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/get_bitcoin_price"
+    external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/employee_assistant"
     
     headers = {
         "X-API-Key": "d465b2d3-4b4c-4167-83ee-e7c144664b35",
@@ -68,10 +68,5 @@ def employee_assistant():
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
     
-
-    @app.route('/test', methods=['GET'])
-    def test():return "Test route works!"
-
-
     if __name__ == '__main__':
         app.run(debug=True)
