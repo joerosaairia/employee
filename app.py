@@ -64,4 +64,6 @@ def employee_assistant():
             return jsonify(response.json())
         else:
             error_message = response.json().get('message', 'Unknown error occurred')
-   
+            return jsonify({"error": error_message, "status_code": response.status_code}), response.status_code
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
