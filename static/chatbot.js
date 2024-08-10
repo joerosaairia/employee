@@ -45,12 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         })
         .then(response => {
-            // Handle cases where the response is not JSON
-            return response.json().catch(() => {
-                throw new Error('The server returned an unexpected response.');
-            });
+            if (!response.ok) {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.error || 'Unknown error occurred');
+                });
+            }
+            return response.json();
         })
         .then(data => {
+            console.log("Data received:", data); // Log the data for debugging
             if (data.result) {
                 addMessage(`Bot: ${data.result}`, 'bot-message');  // Display the result
             } else if (data.report) {
