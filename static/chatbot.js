@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function sendToApi(userInput) {
-        fetch('/api/employee_assistant', {  // Update to call the Flask backend API
+        fetch('/api/employee_assistant', {  // Call the Flask backend API
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -46,9 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            if (data.response) {
-                addMessage(data.response, 'bot-message');
+            if (data.error) {
+                addMessage(data.error, 'bot-message');  // Display the error message
+            } else if (data.response) {
+                addMessage(data.response, 'bot-message');  // Display the response message
             } else {
                 addMessage('Sorry, there was an error processing your request.', 'bot-message');
             }
@@ -58,4 +59,5 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage('Sorry, there was an error connecting to the server.', 'bot-message');
         });
     }
+    
 });
