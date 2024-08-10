@@ -71,3 +71,7 @@ def employee_assistant():
 
     @app.route('/test', methods=['GET'])
     def test():return "Test route works!"
+
+
+    if __name__ == '__main__':
+        app.run(debug=True)
