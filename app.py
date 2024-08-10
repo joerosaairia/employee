@@ -67,3 +67,7 @@ def employee_assistant():
             return jsonify({"error": error_message, "status_code": response.status_code}), response.status_code
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
+    
+
+    @app.route('/test', methods=['GET'])
+    def test():return "Test route works!"
