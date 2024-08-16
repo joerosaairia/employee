@@ -10,12 +10,14 @@
     <header>
         <img src="{{ url_for('static', filename='logo.png') }}" alt="Airia Apps Logo" class="logo">
         <nav>
-            <a href="/">Home</a>
-            <a href="/directory">Directory</a>
-            <a href="/news">News</a>
-            <a href="/documents">Documents</a>
-            <a href="/calendar">Calendar</a>
-            <a href="{{ url_for('practice') }}">Practice</a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/directory">Directory</a></li>
+                <li><a href="/news">News</a></li>
+                <li><a href="/documents">Documents</a></li>
+                <li><a href="/calendar">Calendar</a></li>
+                <li><a href="{{ url_for('practice') }}">Practice</a></li>
+            </ul>
         </nav>
     </header>
     <main>
@@ -37,17 +39,17 @@
     <div id="chatbot">
         <div id="chatbot-header">
             <h3>Chat with us!</h3>
-            <button id="close-chatbot">&times;</button>
+            <button id="close-chatbot" aria-label="Close chatbot">&times;</button>
         </div>
         <div id="chatbot-body">
-            <div id="chatbot-messages"></div>
+            <div id="chatbot-messages" role="log" aria-live="polite"></div>
         </div>
         <div id="chatbot-footer">
-            <input type="text" id="chatbot-input" placeholder="Type a message...">
-            <button id="send-chatbot">Send</button>
+            <input type="text" id="chatbot-input" placeholder="Type a message..." aria-label="Chat message input">
+            <button id="send-chatbot" aria-label="Send message">Send</button>
         </div>
     </div>
-    <button id="open-chatbot">Chat</button>
+    <button id="open-chatbot" aria-label="Open chatbot">Chat</button>
     
     <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 </body>

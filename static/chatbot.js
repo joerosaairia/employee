@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function sendToApi(userInput) {
-        fetch('/api/employee_assistant', {  // Call the Flask backend API
+        fetch('/api/employee_assistant', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -45,18 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         })
         .then(response => {
-            // Handle cases where the response is not JSON
             return response.json().catch(() => {
                 throw new Error('The server returned an unexpected response.');
             });
         })
         .then(data => {
             if (data.result) {
-                addMessage(`Bot: ${data.result}`, 'bot-message');  // Display the result
+                addMessage(`Bot: ${data.result}`, 'bot-message');
             } else if (data.report) {
                 const firstReport = Object.values(data.report)[0];
                 if (firstReport && firstReport.result) {
-                    addMessage(`Bot: ${firstReport.result}`, 'bot-message');  // Display the nested result
+                    addMessage(`Bot: ${firstReport.result}`, 'bot-message');
                 } else {
                     addMessage('Sorry, there was an error processing your request.', 'bot-message');
                 }
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            addMessage(`Bot: ${error.message}`, 'bot-message');  // Display the error message
+            addMessage(`Bot: ${error.message}`, 'bot-message');
         });
     }
 });

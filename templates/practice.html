@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice Economics</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <style>
-        /* Styles are already provided */
-    </style>
 </head>
 <body>
     <header>
@@ -22,7 +19,7 @@
     <main>
         <section>
             {% if error %}
-                <p>{{ error }}</p>
+                <p class="error">{{ error }}</p>
             {% elif question %}
                 {% if old_question %}
                     <p class="old-question">Previous question: {{ old_question }}</p>
@@ -37,7 +34,6 @@
                 {% endif %}
                 <h2 class="new-question">{{ question }}</h2>
                 <form method="POST">
-                    <!-- Ensure the last_question is always the current question being shown -->
                     <input type="hidden" name="last_question" value="{{ question }}">
                     <label for="user_input">Your Answer:</label><br>
                     <textarea id="user_input" name="user_input" rows="4" cols="50"></textarea><br><br>
