@@ -67,7 +67,8 @@ def practice():
             # Update last_question to the current question before moving forward
             old_question = last_question
             last_question = new_question
-            return render_template('practice.html', old_question=old_question, feedback=feedback, correct=correct, question=last_question)
+            return render_template('practice.html', old_question=last_question, feedback=feedback, correct=correct, question=new_question)
+
         else:
             return render_template('practice.html', error="Failed to submit answer. Please try again.")
     else:

@@ -144,7 +144,7 @@
                 {% endif %}
                 <h2 class="new-question">{{ question }}</h2>
                 <form method="POST">
-                    <input type="hidden" name="last_question" value="{{ old_question or question }}">
+                    <input type="hidden" name="last_question" value="{{ question }}">
                     <label for="user_input">Your Answer:</label><br>
                     <textarea id="user_input" name="user_input" rows="4" cols="50"></textarea><br><br>
                     <button type="submit">Submit Answer</button>
