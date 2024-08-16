@@ -32,10 +32,23 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Chatbot Interface -->
     <div id="chatbot">
-        <!-- Chatbot Content -->
+        <div id="chatbot-header">
+            <h3>Chat with us!</h3>
+            <button id="close-chatbot">&times;</button>
+        </div>
+        <div id="chatbot-body">
+            <div id="chatbot-messages"></div>
+        </div>
+        <div id="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Type a message...">
+            <button id="send-chatbot">Send</button>
+        </div>
     </div>
     <button id="open-chatbot">Chat</button>
+    
     <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 </body>
 </html>
