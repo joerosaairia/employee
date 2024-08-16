@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section>
+        <h2>Welcome to Aria Apps</h2>
+        <p>Explore our platform to improve your understanding of economics through interactive questions and exercises.</p>
+        
+        <div>
+            <h3>What You Can Do Here</h3>
+            <ul>
+                <li><strong>Practice Economics:</strong> Test your knowledge with interactive economics questions.</li>
+                <li><strong>Stay Updated:</strong> Check out the latest news, documents, and calendar events.</li>
+                <li><strong>Chat with Us:</strong> Use our chatbot to ask questions and get instant responses.</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('practice') }}" class="button">Start Practicing</a>
+        </div>
+    </section>
+{% endblock %}
