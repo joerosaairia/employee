@@ -70,6 +70,7 @@ def submit_answer(last_question, user_input):
     else:
         return None
 
+# Flask route for the practice page
 @app.route('/practice', methods=['GET', 'POST'])
 def practice():
     if request.method == 'POST':
@@ -82,7 +83,10 @@ def practice():
             correct = feedback_response.get('correct')
             new_question = feedback_response.get('newQuestion')
             
-            return render_template('practice.html', old_question=last_question, feedback=feedback, correct=correct, question=new_question)
+            # Update last_question to the current question before moving forward
+            old_question = last_question
+            last_question = new_question
+            return render_template('practice.html', old_question=old_question, feedback=feedback, correct=correct, question=last_question)
         else:
             return render_template('practice.html', error="Failed to submit answer. Please try again.")
     else:
