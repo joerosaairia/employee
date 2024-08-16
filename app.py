@@ -30,7 +30,7 @@ events = [
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('base.html')
 
 
 API_URL = 'https://demo.airia.com/platform/api/PipelineExecution/education'
