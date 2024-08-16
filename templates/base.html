@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Portal</title>
+    <title>Aria Apps</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
-        <h1>Employee Portal</h1>
+        <h1>Airia Apps</h1>
         <nav>
-            <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('directory') }}">Directory</a>
-            <a href="{{ url_for('news_page') }}">News</a>
-            <a href="{{ url_for('documents_page') }}">Documents</a>
-            <a href="{{ url_for('calendar') }}">Calendar</a>
+            <a>Home</a>
+            <a>Directory</a>
+            <a>News</a>
+            <a>Documents</a>
+            <a>Calendar</a>
+            <a href="{{ url_for('practice') }}">Practice</a>
         </nav>
     </header>
     <main>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Economics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .old-question {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .result {
+            margin-top: 30px;
+        }
+
+        .result p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: red;
+            font-weight: bold;
+        }
+
+        .feedback {
+            color: #555;
+            font-style: italic;
+        }
+
+        .new-question {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Practice Economics Questions</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/practice">Practice</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            {% if error %}
+                <p>{{ error }}</p>
+            {% elif question %}
+                {% if old_question %}
+                    <p class="old-question">Previous question: {{ old_question }}</p>
+                {% endif %}
+                {% if feedback %}
+                    <div class="result">
+                        <p class="{{ 'correct' if correct else 'incorrect' }}">
+                            {{ 'Correct!' if correct else 'Incorrect!' }}
+                        </p>
+                        <p class="feedback">{{ feedback }}</p>
+                    </div>
+                {% endif %}
+                <h2 class="new-question">{{ question }}</h2>
+                <form method="POST">
+                    <input type="hidden" name="last_question" value="{{ old_question or question }}">
+                    <label for="user_input">Your Answer:</label><br>
+                    <textarea id="user_input" name="user_input" rows="4" cols="50"></textarea><br><br>
+                    <button type="submit">Submit Answer</button>
+                </form>
+            {% else %}
+                <p>No question available at the moment.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
