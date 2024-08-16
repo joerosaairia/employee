@@ -3,54 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airia Apps</title>
+    <title>Aria Apps</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="Airia Apps Logo" class="logo">
+        <h1>Airia Apps</h1>
         <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/directory">Directory</a></li>
-                <li><a href="/news">News</a></li>
-                <li><a href="/documents">Documents</a></li>
-                <li><a href="/calendar">Calendar</a></li>
-                <li><a href="{{ url_for('practice') }}">Practice</a></li>
-            </ul>
+            <a>Home</a>
+            <a>Directory</a>
+            <a>News</a>
+            <a>Documents</a>
+            <a>Calendar</a>
+            <a href="{{ url_for('practice') }}">Practice</a>
         </nav>
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; 2024 Airia Apps. All rights reserved.</p>
-        <div class="footer-info">
-            <a href="mailto:info@airiaapps.com">Contact Us</a>
-            <div class="social-media">
-                <a href="#"><img src="{{ url_for('static', filename='facebook-icon.png') }}" alt="Facebook"></a>
-                <a href="#"><img src="{{ url_for('static', filename='twitter-icon.png') }}" alt="Twitter"></a>
-                <a href="#"><img src="{{ url_for('static', filename='linkedin-icon.png') }}" alt="LinkedIn"></a>
-            </div>
-        </div>
+        <p>&copy; 2024 Company Name</p>
     </footer>
-    
     <!-- Chatbot Interface -->
     <div id="chatbot">
         <div id="chatbot-header">
             <h3>Chat with us!</h3>
-            <button id="close-chatbot" aria-label="Close chatbot">&times;</button>
+            <button id="close-chatbot">&times;</button>
         </div>
         <div id="chatbot-body">
-            <div id="chatbot-messages" role="log" aria-live="polite"></div>
+            <div id="chatbot-messages"></div>
         </div>
         <div id="chatbot-footer">
-            <input type="text" id="chatbot-input" placeholder="Type a message..." aria-label="Chat message input">
-            <button id="send-chatbot" aria-label="Send message">Send</button>
+            <input type="text" id="chatbot-input" placeholder="Type a message...">
+            <button id="send-chatbot">Send</button>
         </div>
     </div>
-    <button id="open-chatbot" aria-label="Open chatbot">Chat</button>
-    
+    <button id="open-chatbot">Chat</button>
     <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 </body>
 </html>
