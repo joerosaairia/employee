@@ -6,28 +6,6 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-# Dummy data
-employees = [
-    {"name": "Alice Johnson", "position": "Software Engineer", "email": "alice@example.com"},
-    {"name": "Bob Smith", "position": "Project Manager", "email": "bob@example.com"},
-    {"name": "Carol White", "position": "HR Specialist", "email": "carol@example.com"}
-]
-
-news = [
-    {"title": "Company Q2 Results", "content": "We have exceeded our targets for Q2..."},
-    {"title": "New Office Opening", "content": "Our new office in San Francisco is now open..."}
-]
-
-documents = [
-    {"title": "Employee Handbook", "link": "#"},
-    {"title": "HR Policies", "link": "#"}
-]
-
-events = [
-    {"date": "2024-08-10", "event": "Company Picnic"},
-    {"date": "2024-09-15", "event": "Annual General Meeting"}
-]
-
 @app.route('/')
 def home():
     return render_template('base.html')
@@ -44,7 +22,9 @@ def get_next_question():
     data = {
         'userInput': 'get a new question'
     }
+    print(f"Calling API: {API_URL} with data: {data}")  # Log the API call details
     response = requests.post(API_URL, json=data, headers=headers)
+    print(f"API Response Status: {response.status_code}")  # Log the response status code
     if response.status_code == 200:
         result = response.json().get('result')
         if isinstance(result, str):
@@ -59,9 +39,11 @@ def submit_answer(last_question, user_input):
         'X-API-Key': API_KEY
     }
     data = {
-        'userInput': f"last question: {last_question} | user input: {user_input}"
+        'userInput': f"the last question was: {last_question} | user input: {user_input}"
     }
+    print(f"Calling API: {API_URL} with data: {data}")  # Log the API call details
     response = requests.post(API_URL, json=data, headers=headers)
+    print(f"API Response Status: {response.status_code}")  # Log the response status code
     if response.status_code == 200:
         result = response.json().get('result')
         if isinstance(result, str):
@@ -70,7 +52,6 @@ def submit_answer(last_question, user_input):
     else:
         return None
 
-# Flask route for the practice page
 @app.route('/practice', methods=['GET', 'POST'])
 def practice():
     if request.method == 'POST':
