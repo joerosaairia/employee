@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 
 # Configuration
-API_URL = 'https://demo.airia.com/platform/api/PipelineExecution/education'
+API_URL = 'https://demo.airia.ai/api/PipelineExecution/education'
 API_KEY = 'd465b2d3-4b4c-4167-83ee-e7c144664b35'  # Replace with your actual API key
 
 def get_next_question():
@@ -79,7 +79,7 @@ def practice():
 # API route to handle chatbot requests
 @app.route('/api/employee_assistant', methods=['POST'])
 def employee_assistant():
-    external_api_url = "https://demo.airia.com/platform/api/PipelineExecution/joe_test_pipeline_2"
+    external_api_url = "https://demo.airia.ai/api/PipelineExecution/joe_test_pipeline_2"
     
     headers = {
         "X-API-Key": "d465b2d3-4b4c-4167-83ee-e7c144664b35",
